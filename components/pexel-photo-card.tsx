@@ -62,7 +62,7 @@ export const PexelPhotoCard = ({
 					{alt}
 				</Typography>
 				<div
-					className="flex items-baseline gap-1"
+					className="flex items-center gap-1"
 					style={{ "--avg-color": avg_color } as React.CSSProperties}
 					role="img"
 					aria-label={`Average color: ${avg_color}`}
