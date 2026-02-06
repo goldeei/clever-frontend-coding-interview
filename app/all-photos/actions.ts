@@ -32,6 +32,5 @@ export const getPhotos = async (): Promise<PexelPhoto[]> => {
 		photographer: photo.photographer,
 		photographerUrl: photo.photographer_url,
 		avgColor: photo.avg_color,
-		liked: false,
 	}));
 };

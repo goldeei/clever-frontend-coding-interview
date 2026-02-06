@@ -22,7 +22,7 @@ export type PexelResponse = {
 
 export type PexelPhoto = Pick<
 	PexelPhotoResponse,
-	"id" | "src" | "alt" | "photographer" | "liked"
+	"id" | "src" | "alt" | "photographer"
 > & {
 	photographerUrl: PexelPhotoResponse["photographer_url"];
 	avgColor: PexelPhotoResponse["avg_color"];
