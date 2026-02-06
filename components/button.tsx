@@ -9,7 +9,7 @@ export const Button = ({ children, className, ...props }: ButtonProps) => {
 	return (
 		<button
 			className={cn(
-				"bg-primary hover:bg-primary/95 font-bold transition-colors text-white h-11 px-8 rounded-md cursor-pointer",
+				"bg-primary hover:bg-primary/95 font-bold transition-colors text-white h-11 px-8 rounded-lg cursor-pointer",
 				className,
 			)}
 			{...props}
