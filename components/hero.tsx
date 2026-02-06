@@ -11,7 +11,7 @@ export const Hero = ({ title, isCentered = true }: HeroProps) => {
 	return (
 		<div
 			className={cn(
-				"flex flex-col items-center justify-center gap-4 mb-8",
+				"flex flex-col gap-4 mb-8",
 				isCentered && "items-center justify-center",
 			)}
 		>
