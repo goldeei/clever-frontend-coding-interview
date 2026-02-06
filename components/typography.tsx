@@ -19,6 +19,7 @@ interface TypographyProps extends VariantProps<typeof typographyVariants> {
 	children: React.ReactNode;
 	className?: string;
 	as?: ElementType;
+	title?: string;
 }
 
 /**
@@ -34,6 +35,7 @@ export const Typography = ({
 	className,
 	variant,
 	as,
+	title,
 }: TypographyProps) => {
 	const defaultElement: Record<string, ElementType> = {
 		h1: "h1",
@@ -44,7 +46,10 @@ export const Typography = ({
 	const Component = as || defaultElement[variant || "body"];
 
 	return (
-		<Component className={cn(typographyVariants({ variant }), className)}>
+		<Component
+			className={cn(typographyVariants({ variant }), className)}
+			title={title}
+		>
 			{children}
 		</Component>
 	);
