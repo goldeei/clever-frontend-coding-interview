@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/button";
 import { FormInput } from "@/components/form-input";
-import { LogoIcon } from "@/components/icons";
-import { Typography } from "@/components/typography";
+import { Hero } from "@/components/hero";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "./actions";
@@ -32,7 +31,7 @@ export default function SignInPage() {
 		const { success, errors } = await signIn(username, password);
 
 		if (success) {
-			router.push("/photos");
+			router.push("/all-photos");
 		} else {
 			setError(errors);
 		}
@@ -45,10 +44,7 @@ export default function SignInPage() {
 	return (
 		<div className="size-full flex flex-col items-center sm:justify-center ">
 			<div className="w-[320px] flex flex-col items-center">
-				<div className="mb-8 flex flex-col items-center gap-4">
-					<LogoIcon />
-					<Typography variant="h1">Sign in to your account</Typography>
-				</div>
+				<Hero title="Sign in to your account" />
 				<form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
 					<FormInput
 						label="Username"
