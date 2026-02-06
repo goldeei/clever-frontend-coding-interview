@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`antialiased h-screen p-9 sm:p-6`}>{children}</body>
+			<body className={`antialiased min-h-screen p-9 sm:p-6 sm:pb-0`}>
+				{children}
+			</body>
 		</html>
 	);
 }
