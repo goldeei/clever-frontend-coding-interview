@@ -1,19 +1,19 @@
-import { PexelPhotoResponse } from "@/app/all-photos/page";
+import { PexelPhoto } from "@/app/all-photos/types";
 import Image from "next/image";
 import Link from "next/link";
 import { LinksIcon, StarIcon } from "./icons";
 import { Typography } from "./typography";
 
 type PexelPhotoCardProps = Pick<
-	PexelPhotoResponse,
-	"src" | "alt" | "photographer_url" | "avg_color" | "photographer"
+	PexelPhoto,
+	"src" | "alt" | "photographer" | "photographerUrl" | "avgColor"
 > & { isLiked: boolean; onClick: () => void };
 
 export const PexelPhotoCard = ({
 	src,
 	alt,
-	photographer_url,
-	avg_color,
+	photographerUrl,
+	avgColor,
 	photographer,
 	isLiked,
 	onClick,
@@ -42,18 +42,18 @@ export const PexelPhotoCard = ({
 				/>
 			</div>
 			<div className="flex flex-col gap-0.5 pt-0.5 min-w-0">
-				<div className="flex items-center justify-between">
-					<Typography variant="label">{photographer}</Typography>
-					<Link
-						href={photographer_url}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-primary text-xs flex items-center gap-1"
-					>
-						<LinksIcon className="size-3" />
-						<span>Portfolio</span>
-					</Link>
-				</div>
+			<div className="flex items-center justify-between">
+				<Typography variant="label">{photographer}</Typography>
+				<Link
+					href={photographerUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-primary text-xs flex items-center gap-1"
+				>
+					<LinksIcon className="size-3" />
+					<span>Portfolio</span>
+				</Link>
+			</div>
 				<Typography
 					variant="body"
 					className="whitespace-nowrap overflow-hidden text-ellipsis"
@@ -61,24 +61,24 @@ export const PexelPhotoCard = ({
 				>
 					{alt}
 				</Typography>
-				<div
-					className="flex items-center gap-1"
-					style={{ "--avg-color": avg_color } as React.CSSProperties}
-					role="img"
-					aria-label={`Average color: ${avg_color}`}
+			<div
+				className="flex items-center gap-1"
+				style={{ "--avg-color": avgColor } as React.CSSProperties}
+				role="img"
+				aria-label={`Average color: ${avgColor}`}
+			>
+				<Typography
+					variant="body"
+					className="text-(--avg-color) inline-block mr-1"
+					aria-hidden="true"
 				>
-					<Typography
-						variant="body"
-						className="text-(--avg-color) inline-block mr-1"
-						aria-hidden="true"
-					>
-						{avg_color}
-					</Typography>
-					<div
-						className="size-3 bg-(--avg-color) inline-block"
-						aria-hidden="true"
-					/>
-				</div>
+					{avgColor}
+				</Typography>
+				<div
+					className="size-3 bg-(--avg-color) inline-block"
+					aria-hidden="true"
+				/>
+			</div>
 			</div>
 		</article>
 	);
