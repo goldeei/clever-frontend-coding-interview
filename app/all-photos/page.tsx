@@ -8,6 +8,11 @@ import { PexelPhoto } from "./types";
 
 export default function AllPhotosPage() {
 	const [photos, setPhotos] = useState<PexelPhoto[]>([]);
+	const [likedPhotos, setLikedPhotos] = useState<Set<number>>(() => {
+		if (typeof window === "undefined") return new Set();
+		const stored = localStorage.getItem("liked-photos");
+		return stored ? new Set(JSON.parse(stored)) : new Set();
+	});
 
 	useEffect(() => {
 		const fetchPhotos = async () => {
@@ -22,29 +27,33 @@ export default function AllPhotosPage() {
 	}, []);
 
 	const handleLike = (id: number) => {
-		setPhotos((prev) =>
-			prev.map((photo) =>
-				photo.id === id ? { ...photo, liked: !photo.liked } : photo,
-			),
+		const newLikedPhotos = new Set(likedPhotos);
+
+		if (newLikedPhotos.has(id)) {
+			newLikedPhotos.delete(id);
+		} else {
+			newLikedPhotos.add(id);
+		}
+
+		localStorage.setItem(
+			"liked-photos",
+			JSON.stringify(Array.from(newLikedPhotos)),
 		);
+		setLikedPhotos(newLikedPhotos);
 	};
 
 	return (
 		<div className="max-w-[500px] mx-auto">
 			<Hero title="All Photos" isCentered={false} />
 			<div className="flex flex-col gap-3">
-			{photos.map(({ id, src, alt, photographer, photographerUrl, avgColor, liked }) => (
-				<PexelPhotoCard
-					key={id}
-					src={src}
-					alt={alt}
-					photographer={photographer}
-					photographerUrl={photographerUrl}
-					avgColor={avgColor}
-					isLiked={liked}
-					onClick={() => handleLike(id)}
-				/>
-			))}
+				{photos.map((photo) => (
+					<PexelPhotoCard
+						{...photo}
+						isLiked={likedPhotos.has(photo.id)}
+						onClick={() => handleLike(photo.id)}
+						key={photo.id}
+					/>
+				))}
 			</div>
 		</div>
 	);
