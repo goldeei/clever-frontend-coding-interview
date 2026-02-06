@@ -3,6 +3,7 @@
 :root {
 	--background: #ffffff;
 	--foreground: #111827;
+	--primary: #007bff;
 }
 
 html {
@@ -12,6 +13,9 @@ html {
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+	--color-primary: var(--primary);
+
+	/* Text sizes */
 	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;
 	--text-base: 1rem;
