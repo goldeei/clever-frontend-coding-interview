@@ -10,8 +10,8 @@ import { signIn } from "./actions";
 /**
  * Sign in page
  *
- * username = testuser@test.com
- * password = testpassword
+ * username = user@example.com
+ * password = testpass123
  */
 export default function SignInPage() {
 	const [error, setError] = useState<{
