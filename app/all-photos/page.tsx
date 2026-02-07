@@ -8,6 +8,7 @@ import { PexelPhoto } from "./types";
 
 export default function AllPhotosPage() {
 	const [photos, setPhotos] = useState<PexelPhoto[]>([]);
+	// Check storage on init
 	const [likedPhotos, setLikedPhotos] = useState<Set<number>>(() => {
 		if (typeof window === "undefined") return new Set();
 		const stored = localStorage.getItem("liked-photos");
@@ -26,6 +27,12 @@ export default function AllPhotosPage() {
 		fetchPhotos();
 	}, []);
 
+	/**
+	 * Handle like/unlike for a photo
+	 *
+	 * If photo is already liked, unlike it, otherwise like it
+	 * Update local storage and state
+	 */
 	const handleLike = (id: number) => {
 		const newLikedPhotos = new Set(likedPhotos);
 
