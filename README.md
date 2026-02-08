@@ -1,9 +1,11 @@
 # Clever's Frontend Coding Interview
+
 👋 Hello!, Hola!, Witam!
 
 Thank you for taking the time to interview with Clever. This coding challenge is meant to be a _short_ exercise to see how you code on the frontend. Please don't spend more than a couple hours, and certainly don't stress. Treat it like you would any other coding task. Throw on some tunes 🎶, sit back, relax 😌, and code!
 
 ### Requirements
+
 - Create a small web app using React and Typescript.
 - Our preference is with NextJs.
 - However, please use either `npm` or `yarn`.
@@ -19,6 +21,7 @@ Thank you for taking the time to interview with Clever. This coding challenge is
 - We'll circle back with you and review 1:1.
 
 ### Details
+
 - Mocks for these pages are provided in Figma. You should have been sent an invite to access them, if not let us know.
   - [Figma Mocks](https://www.figma.com/file/wr1seCuhlRtoFGuz1iWgyF/Frontend-Coding-Mocks?type=design&node-id=0%3A1&mode=design&t=Uw1av3TypDUDcLAd-1)
   - We are looking for **attention to detail** when implementing these. If a font size is 14px in the mocks, please make sure it renders that way in your app.
@@ -40,3 +43,42 @@ Thank you for taking the time to interview with Clever. This coding challenge is
 Remember, please don't spend too much time on this. In fact, save a little time and **add a section to the README** outlining what else you'd do differently to make this a production ready app.
 
 **Any questions**, just let us know. Send emails to <a href="mailto:james.crain@movewithclever.com">james.crain@movewithclever.com</a>. Good luck!
+
+---
+
+Hi I'm **Jake Goldfarb**, thanks for taking the time to review my assessment!
+
+The username is user@example.com and the password is testpass123. They're sitting in the (committed) .env.local file because it felt weird sticking them in a constant.
+
+Admittedly, I may have gone a little overboard for the scope of this but I couldn't help myself haha. If this were a production application, here's what else I would add:
+
+### Authentication & Security
+
+- Implement proper JWT tokens with refresh token rotation
+- Store user data (liked photos, auth) in a real database instead of localStorage/env
+  - If not this I'd at least have to clear the locally stored array of liked photo ids on a credential change
+
+### Testing
+
+- Add unit tests for components using Vitest/React Testing Library
+- Add integration tests for server actions
+- Set up CI/CD pipeline with automated testing
+- Add accessibility testing (a11y)
+
+### Performance
+
+- Add React Query for data caching and optimistic updates
+
+### User Experience
+
+- Implement proper loading states and skeleton screens
+- Add error boundaries for graceful error handling, 401 redirect, etc
+- Add sign-out ui (functionality included with an unused method in `sign-in/actions` for completeness)
+- Add "remember me" option for login
+- Add some depth to the site using subtle shadows
+- Add some life to the site with some subtle animations in/out on load, as photos load in, etc
+
+### Code Quality
+
+- General standardization things, I really like using prettier-plugin-tailwind to avoid class order insanity
+- Eslinting
