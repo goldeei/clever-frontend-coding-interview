@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 export async function signIn(username: string, password: string) {
 	const errors: { username?: string; password?: string } = {};
 
@@ -10,8 +12,25 @@ export async function signIn(username: string, password: string) {
 		errors.password = "Invalid password";
 	}
 
+	const success = Object.keys(errors).length === 0;
+
+	if (success) {
+		const cookieStore = await cookies();
+		cookieStore.set("auth-token", "authenticated", {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === "production",
+			sameSite: "lax",
+			maxAge: 60 * 60 * 24 * 7,
+		});
+	}
+
 	return {
-		success: Object.keys(errors).length === 0,
+		success,
 		errors,
 	};
+}
+
+export async function signOut() {
+	const cookieStore = await cookies();
+	cookieStore.delete("auth-token");
 }
